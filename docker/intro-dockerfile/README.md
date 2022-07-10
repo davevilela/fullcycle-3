@@ -170,8 +170,11 @@ quando usamos o **CMD** qualquer parâmetro passado no "docker run" substituirá
 os comandos estabelecidos no Dockerfile.
 
 **usando o comando ENTRYPOINT**
+```Dockerfile
+ENTRYPOINT ["echo", "Hello "]
 
+CMD ["World"]
+```
+o **ENTRYPOINT** é um comando fixo, diferente do CMD que pode ser usado como parâmetro do entrypoint.
 
-
-****
 

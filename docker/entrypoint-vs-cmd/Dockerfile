@@ -1,3 +1,5 @@
 FROM ubuntu:latest
 
-CMD ["echo", "hello world"]
+ENTRYPOINT ["echo", "Hello "]
+
+CMD ["World"]
