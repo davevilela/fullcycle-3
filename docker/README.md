@@ -178,3 +178,10 @@ CMD ["World"]
 o **ENTRYPOINT** é um comando fixo, diferente do CMD que pode ser usado como parâmetro do entrypoint.
 
 
+### Expondo uma porta
+
+exemplo:
+```Dockerfile
+EXPOSE 80
+```
+
