@@ -146,3 +146,8 @@ WORKDIR /app
 COPY html /usr/share/nginx/html
 ```
 onde o primeiro parâmetro é o diretório local, e o segundo é o diretório do container.
+
+**selecionar usuário**
+```Dockerfile
+USER [nome do usuário]
+```

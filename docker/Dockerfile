@@ -1,5 +1,7 @@
 FROM nginx:latest
 
+USER root
+
 WORKDIR /app
 
 RUN apt-get update && \
