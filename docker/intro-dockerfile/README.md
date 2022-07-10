@@ -73,6 +73,12 @@ docker ps
 
 # ver todos os processos, inclusive os que já morreram
 docker ps -a
+
+# ver somente ids de todos os containers
+docker ps -a -q
+
+# apagar todos os containers
+docker rm $(docker ps -a -q) -f
 ```
 
 ## Networks <a name="networks"></a>
@@ -151,3 +157,14 @@ onde o primeiro parâmetro é o diretório local, e o segundo é o diretório do
 ```Dockerfile
 USER [nome do usuário]
 ```
+
+### Entrypoint vs CMD
+
+**usando o comando CMD**
+```Dockerfile
+FROM ubuntu:latest
+CMD ["echo", "hello world"]
+```
+
+****
+
