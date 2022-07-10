@@ -1,4 +1,4 @@
-# Full cycle docker
+# Resumão Full cycle docker
 
 1. [Conceitos docker](#conceitos)
    1. [Host](#host)
@@ -79,16 +79,66 @@ docker ps -a -q
 
 # apagar todos os containers
 docker rm $(docker ps -a -q) -f
+
+# attach em um processo
+docker attach [nome do container]
+# outra opão é usar o seguinte comando:
+docker exec [nome do container]
+# exemplo 
+docker exec -it ubuntu1 bash
 ```
 
 ## Networks <a name="networks"></a>
 
+comandos:
 ```bash
 # redirecionamento de porta entre o container e o docker-host
 # a primeira porta é do host, a segunda do container
 docker run -p 8080:80 nginx
+
+# comando base
+docker network
+
+# listar todas as networks
+docker network ls
+
+# remover networks que não estão sendo utilizadas
+docker network prune
+
+#inspecionar rede
+docker inspect [nome da rede]
+
+# criar nova rede
+docker network create --driver [tipo do driver] [nome da rede]
+
+# exemplo
+docker network create --driver bridge minharede
+
+# criar um container com uma network customizada
+docker run [...] --network [nome da rede] [nome da imagem]
+# exemplo
+docker run -dit --name ubuntu1 --network minharede bash
+
+# conectando um container a uma rede específica
+docker network connect [nome da rede] [nome do container]
+# exemplo
+docker network connect minharede ubuntu3
 ```
 
+
+tipos de network (drivers):
+- **bridge**: Usamos para um container se comunicar com outro.
+- **host**: permite que o container acesse uma porta da máquina host (no caso, a máquina que está rodando o docker host.) Geralmente é usado no lugar do bind mount de portas. 
+- **overlay**: usado para comunicar vários hosts (máquinas). Usado pelo docker swarm.
+- **maclan**: mapeia o container para uma porta física através de um endereco mac. Não é comumente utilizado.
+- **none**: o container fica isolado, sem fazer parte de nenhuma rede.
+
+Tipos mais utilizados:
+- Brige
+- Host
+- Overlay (quando usando docker swarm)
+ 
+ Obs: por padrão, todos os containers são iniciados com uma network "bridge" do docker.
 ## Volumes <a name="volumes" /></a>
 
 ```bash
@@ -185,3 +235,10 @@ exemplo:
 EXPOSE 80
 ```
 
+## Publicando uma imagem no Docker hub
+
+```bash
+docker push [nome de usuario]/[nome da imagem]
+# exemplo:
+docker push davivilela/nginx:latest
+```
