@@ -166,5 +166,12 @@ FROM ubuntu:latest
 CMD ["echo", "hello world"]
 ```
 
+quando usamos o **CMD** qualquer parâmetro passado no "docker run" substituirá
+os comandos estabelecidos no Dockerfile.
+
+**usando o comando ENTRYPOINT**
+
+
+
 ****
 
